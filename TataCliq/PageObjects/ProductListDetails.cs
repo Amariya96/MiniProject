@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
@@ -17,17 +18,23 @@ namespace TataCliq.PageObjects
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
-       [FindsBy(How = How.XPath, Using = "//div[@id='ProductModule-MP000000001575063'][1]")]
+       [FindsBy(How = How.XPath, Using = "//div[@class='Grid__element'][1]")]
        private IWebElement? SearchProdcutItem { get; set; }
+
+        [FindsBy(How =How.Id,Using = "wzrk-confirm")]
+        IWebElement ButtonClose { get; set; }
 
         public ProductSizeAndAddToCart ClickProduct()
         {
-
-            /*DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            ButtonClose.Click();
+            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
             wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.Until(d => SearchProdcutItem?.Displayed);*/
+            wait.Timeout = TimeSpan.FromSeconds(40);
+            wait.Until(d => SearchProdcutItem.Displayed);
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(SearchProdcutItem).Build().Perform();
+            Thread.Sleep(3000);
             SearchProdcutItem?.Click();
             Thread.Sleep(3000);
             return new ProductSizeAndAddToCart(driver);

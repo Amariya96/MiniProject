@@ -12,19 +12,35 @@ namespace TataCliq.TestScripts
     [TestFixture]
     internal class TataCliqTest : CoreCodes
     {
-        [Test]
+        [Test,Order(1)]
         public void SearchProductTest()
         {
             var homepage = new TataCliqHomePage(driver);
-            var productList = homepage.TypeSearchInput();
-            Thread.Sleep(3000);
-            var productPage = productList.ClickProduct();
-            List<string> str = driver.WindowHandles.ToList();
-            driver.SwitchTo().Window(str[1]);
-            Thread.Sleep(3000);
-            productPage.AddToBagClick();
-
             
+            string? currDir = Directory.GetParent(@"../../../")?.FullName;
+            string? excelFilePath = currDir + "/TestData/InputData.xlsx";
+            string? sheetName = "TataCliq";
+
+            List<SearchData> excelDataList = ExcelUtils.ReadExcelData(excelFilePath, sheetName);
+
+            foreach (var excelData in excelDataList)
+            {
+
+                string? productItem = excelData?.Products;
+                string? mobileNo = excelData?.MobileNum;
+                Thread.Sleep(3000);
+                
+                var productList = homepage.TypeSearchInput(productItem);
+                var productPage = productList.ClickProduct();
+                List<string> str = driver.WindowHandles.ToList();
+                driver.SwitchTo().Window(str[1]);
+                Thread.Sleep(3000);
+                var checkout =    productPage.AddToBagClick();
+                Thread.Sleep(3000);
+                checkout.BuyNowProduct(mobileNo);
+
+               
+            }
         }
     }
 }

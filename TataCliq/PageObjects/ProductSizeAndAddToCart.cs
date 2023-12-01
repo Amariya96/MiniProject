@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,23 @@ namespace TataCliq.PageObjects
         }
 
 
-        [FindsBy(How = How.XPath, Using = "(//div[contains(@class,'buttonAddToBag')])[1]")]
+        [FindsBy(How = How.XPath, Using = "//span[normalize-space()='ADD TO BAG']")]
         public IWebElement? AddtoBag { get; set; }
 
-
-        
-        public void AddToBagClick()
+        [FindsBy(How = How.XPath, Using = "//span[@class='DesktopHeader__cartCount']")]
+        public IWebElement? ViewCart { get; set; }
+        public ProductViewCart AddToBagClick()
         {
-           // Thread.Sleep(3000); 
+            
             AddtoBag?.Click();
+            Thread.Sleep(3000);
+            /*DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            wait.PollingInterval = TimeSpan.FromMicroseconds(1000);
+            wait.Timeout = TimeSpan.FromSeconds(10);
+            wait.Until(d => ViewCart.Displayed);*/
+            ViewCart?.Click();
+            Thread.Sleep(3000);
+            return new ProductViewCart(driver);
         }
     }
 }

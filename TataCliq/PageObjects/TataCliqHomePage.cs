@@ -13,20 +13,27 @@ namespace TataCliq.PageObjects
         }
 
        
-        [FindsBy(How = How.Id, Using = "search-text-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@id='search-text-input']")]
         public IWebElement? SearchProductBox { get; set; }
 
-        public ProductListDetails TypeSearchInput()
+        [FindsBy(How = How.XPath, Using = "//div[@class='DesktopHeader__luxeryTab']")]
+        public IWebElement? LuxeryProduct {  get; set; }
+        public ProductListDetails TypeSearchInput(string product)
         {
             if (SearchProductBox == null)
             {
                 throw new NoSuchElementException(nameof(SearchProductBox));
             }
             SearchProductBox?.Clear();
-            SearchProductBox?.SendKeys("Watches");
-            Thread.Sleep(3000);
+            SearchProductBox?.SendKeys(product);
             SearchProductBox?.SendKeys(Keys.Enter);
             return new ProductListDetails(driver);
+        }
+        public LuxuryProducts Selection()
+        {
+            Thread.Sleep(3000);
+            LuxeryProduct?.Click();
+            return new LuxuryProducts(driver);
         }
     }
 }
