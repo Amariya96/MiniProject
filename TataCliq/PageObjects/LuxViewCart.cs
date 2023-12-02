@@ -18,17 +18,15 @@ namespace TataCliq.PageObjects
         }
         
 
-        [FindsBy(How = How.XPath, Using = "//button[normalize-space()='Buy Now']")]
-        public IWebElement? BuyNowBtn { get; set; }
+        [FindsBy(How = How.XPath, Using = "//span[@class='icons1 headRgtBagIcon']")]
+        public IWebElement? ViewCartBtn { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@placeholder='Mobile number']")]
-        public IWebElement? LuxMobileNo { get; set; }
+       
 
         public void LuxMoveToBtn()
         {
-            BuyNowBtn?.Click();
+            ViewCartBtn?.Click();
             Thread.Sleep(3000);
-            LuxMobileNo?.Click();
         }
     }
 }

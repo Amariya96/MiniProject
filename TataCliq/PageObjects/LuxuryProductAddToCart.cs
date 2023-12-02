@@ -1,5 +1,8 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,10 +32,15 @@ namespace TataCliq.PageObjects
         public LuxViewCart LuxMoveToBag()
         {
             Thread.Sleep(2000);
-            CoreCodes.ScrollIntoView(driver,driver.FindElement(By.XPath("//button[@class='pdp-module__btn pdp-module__active']//span")));
-          
-            Thread.Sleep(8000);
-            MovetoBag?.Click();   
+            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            wait.PollingInterval = TimeSpan.FromMicroseconds(1000);
+            wait.Timeout = TimeSpan.FromSeconds(10);
+            // CoreCodes.ScrollIntoView(driver,driver.FindElement(By.XPath("//button[@class='pdp-module__btn pdp-module__active']//span")));
+            IWebElement Element = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[text()='Style Note & Features']")));
+            driver.ExecuteJavaScript("arguments[0].scrollIntoView();", Element);
+            Thread.Sleep(10000);
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].click()",MovetoBag);
             return new LuxViewCart(driver);
         }
      

@@ -89,7 +89,7 @@ namespace TataCliq.Utilities
             Screenshot ss = its.GetScreenshot();
             string currentDirectory = Directory.GetParent(@"../../../").FullName;
 
-            string filePath = currentDirectory + "/Screenshot/ss_" + DateTime.Now.ToString("yyyy-mm-dd_HH.mm.ss") + ".png";
+            string filePath = currentDirectory + "/Screenshots/ss_" + DateTime.Now.ToString("yyyy-mm-dd_HH.mm.ss") + ".png";
             ss.SaveAsFile(filePath);
 
         }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -8,12 +8,6 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Logs\**" />
-    <EmbeddedResource Remove="Logs\**" />
-    <None Remove="Logs\**" />
-  </ItemGroup>
 
   <ItemGroup>
 	  <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
@@ -37,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="ExtentReports\" />
+    <Folder Include="Logs\" />
     <Folder Include="Screenshots\" />
     <Folder Include="TestData\" />
   </ItemGroup>

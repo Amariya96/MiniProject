@@ -18,7 +18,7 @@ namespace TataCliq.PageObjects
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
-       [FindsBy(How = How.XPath, Using = "//div[@class='Grid__element'][1]")]
+       [FindsBy(How = How.XPath, Using = "//div[@class='Grid__element'][2]")]
        private IWebElement? SearchProdcutItem { get; set; }
 
         [FindsBy(How =How.Id,Using = "wzrk-confirm")]

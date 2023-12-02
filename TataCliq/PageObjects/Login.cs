@@ -22,6 +22,9 @@ namespace TataCliq.PageObjects
 
         [FindsBy(How = How.XPath, Using = "//input[@id='mobileNumber']")]
         private IWebElement? SignInMobileNo { get; set; }
+/*
+        [FindsBy(How = How.XPath, Using = "//button[@class='mobile-number-login__loginCloseBtn']")]
+        private IWebElement? LoginClose { get; set; }*/
         
         public void SignIn()
         {
@@ -32,8 +35,10 @@ namespace TataCliq.PageObjects
             Thread.Sleep(2000);
             SignInBtn?.Click();
             Thread.Sleep(2000);
-            SignInMobileNo?.SendKeys("6798653421");
+            SignInMobileNo?.SendKeys("8547418212");
             SignInMobileNo?.SendKeys(Keys.Enter);
+            Thread.Sleep(5000);
+          //  LoginClose?.Click();
         }
     }
 }
