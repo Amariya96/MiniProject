@@ -22,7 +22,7 @@ namespace TataCliq.PageObjects
         private IWebElement? Luxury { get; set; }
 
         
-        [FindsBy(How = How.XPath, Using = "//a[normalize-space()='eyewear']")]
+        [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/nav[1]/div[1]/ul[1]/li[10]/a[1]")]
         private IWebElement? Brands { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[normalize-space()='Sunglasses']")]
@@ -32,9 +32,6 @@ namespace TataCliq.PageObjects
         [FindsBy(How = How.XPath, Using = "(//div[@class='product-listing-module__flip_card_inner'])[1]")]
         private IWebElement? Item { get; set; }
 
-       /* [FindsBy(How = How.XPath, Using = "//div[@class='wzrk-button-container']")]
-        private IWebElement? AskMeLaterBtn { get; set; }
-       */
         public void ClickProductItem()
         {
             Luxury?.Click();
@@ -42,7 +39,6 @@ namespace TataCliq.PageObjects
         }
         public LuxuryProductAddToCart LuxuaryProduct()
         {
-           // AskMeLaterBtn?.Click();
             DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
             wait.PollingInterval = TimeSpan.FromMicroseconds(1000);
             wait.Timeout = TimeSpan.FromSeconds(10);

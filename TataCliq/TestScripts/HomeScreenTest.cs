@@ -103,15 +103,15 @@ namespace TataCliq.TestScripts
                 o.Filter();
                 TakeScreenShot();
                 Assert.That(driver.Url, Does.Contain("tatacliq"));
-                LogTestResult("SignIn Test", "SignIn Test Passed");
-                test = extent.CreateTest("SignIn Test Passed");
-                test.Pass("SignIn Test Passed");
+                LogTestResult("Filter Test", "Filter Test Passed");
+                test = extent.CreateTest("Filter Test Passed");
+                test.Pass("Filter Test Passed");
             }
             catch (AssertionException ex)
             {
                 TakeScreenShot();
-                LogTestResult("SignIn Test", "SignIn Test Failed", ex.Message);
-                test.Fail("SignIn Test Failed");
+                LogTestResult("Filter Test", "Filter Test Failed", ex.Message);
+                test.Fail("Filter Test Failed");
             }
         }
 
@@ -137,18 +137,18 @@ namespace TataCliq.TestScripts
                 l.SignIn();
                 Thread.Sleep(5000);
                 TakeScreenShot();
-                Assert.That(driver.Url, Does.Contain("tatacliq"));
+                Assert.That(driver.Url, Does.Contain("tatacliq"));               
                 LogTestResult("SignIn Test", "SignIn Test Passed");
-                test = extent.CreateTest("SignIn Test Passed");
-                test.Pass("SignIn Test Passed");
-            }
+               test = extent.CreateTest("SignIn Test Passed");
+               test.Pass("SignIn Test Passed");
+        }
             catch (AssertionException ex)
             {
                 TakeScreenShot();
                 LogTestResult("SignIn Test", "SignIn Test Failed", ex.Message);
                 test.Fail("SignIn Test Failed");
             }
-        }
+}
        
     }
 }
